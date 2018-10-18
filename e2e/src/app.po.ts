@@ -1,11 +1,17 @@
-import { browser, by, element } from 'protractor';
+import { browser, protractor } from 'protractor';
 
 export class AppPage {
   navigateTo() {
     return browser.get('/');
   }
 
-  getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+  waitForElement(el) {
+    const EC = protractor.ExpectedConditions;
+    browser.wait(EC.visibilityOf(el), 5000);
+  }
+
+  optionsSelect(base, target) {
+    base.click();
+    target.click();
   }
 }
